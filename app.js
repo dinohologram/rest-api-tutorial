@@ -4,7 +4,9 @@ const app = express();
 const mongoose = require('mongoose');
 require('dotenv/config');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
+app.use(cors());
 app.use(bodyParser.json()); 
 
 // Import routes
@@ -19,7 +21,7 @@ app.get('/', (req, res) => {
 
 // Connect to DB
 
-mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true},
+mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true},
     () => console.log('Connected to DB')
 );
 
